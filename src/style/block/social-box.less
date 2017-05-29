@@ -1,0 +1,70 @@
+.social-box {
+  position: relative;
+  width: 200px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.social-box--header {
+  margin: 60px auto;
+}
+
+.social-box--about {
+  margin: 30px 0;
+}
+
+.social-box--header::before,
+.social-box--header::after {
+  content: "";
+  height: 2px;
+  width: 100px;
+  display: inline-block;
+  background-color: #c4c0cf;
+  position: absolute;
+  top: 50%;
+}
+
+.social-box--header::before {
+  left: -100px;
+}
+
+.social-box--header::after {
+  right: -100px;
+}
+
+.social-box__item {
+  display: inline-block;
+  color: transparent;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid #c4c0cf;
+  background-size: 70%;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+}
+
+.social-box__item--tw {
+  background-image: svg-load('../img/twitter-logo-silhouette.svg', fill = #c4c0cf);
+
+  &:hover {
+    background-image: svg-load('../img/twitter-logo-silhouette.svg', fill = darken(#c4c0cf, 20%));
+  }
+}
+
+.social-box__item--fb {
+  background-image: svg-load('../img/facebook-logo.svg', fill = #c4c0cf);
+
+  &:hover {
+    background-image: svg-load('../img/facebook-logo.svg', fill = darken(#c4c0cf, 20%));
+  }
+}
+
+.social-box__item--gh {
+  background-image: svg-load('../img/github-logo.svg', fill = #c4c0cf);
+
+  &:hover {
+    background-image: svg-load('../img/github-logo.svg', fill = darken(#c4c0cf, 20%));
+  }
+}
+
