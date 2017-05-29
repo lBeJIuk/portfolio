@@ -52,7 +52,7 @@
   position: absolute;
   left: 50%;
   top: 50%;
-  transform: translate(-125px,-125px);
+  transform: translate(-125px, -125px);
 }
 
 .about__item-title {
@@ -63,4 +63,58 @@
 .about__item-descr {
   text-align: left;
   color: #c0c4cf;
+}
+
+.about__skills {
+  text-align: left;
+  padding-left: 1rem;
+  background-color: @thirdColor;
+  margin-bottom: 1rem;
+  box-sizing: border-box;
+  height: 4rem;
+  line-height: 4rem;
+  vertical-align: middle;
+  float: left;
+  font-size: 1.7rem;
+
+  & + div {
+    display: block;
+    margin-bottom: 1rem;
+    height: 4rem;
+    line-height: 4rem;
+    vertical-align: middle;
+    background-color: @firstColor;
+  }
+}
+
+.about__skills--html5 {
+  width: 90%;
+
+  div {
+    width: 10%;
+  }
+}
+
+.about__skills--css3 {
+  width: 90%;
+
+  div {
+    width: 10%;
+  }
+}
+
+.about__skills--js {
+  width: 60%;
+
+  div {
+    width: 40%;
+  }
+}
+
+.about__skills--php {
+  width: 40%;
+
+  div {
+    width: 60%;
+  }
 }
