@@ -66,55 +66,59 @@
 }
 
 .about__skills {
-  text-align: left;
-  padding-left: 1rem;
-  background-color: @thirdColor;
-  margin-bottom: 1rem;
-  box-sizing: border-box;
+  background-color: #615474;
   height: 4rem;
   line-height: 4rem;
   vertical-align: middle;
-  float: left;
-  font-size: 1.7rem;
+  margin-bottom: 1rem;
+  position: relative;
 
-  & + div {
-    display: block;
-    margin-bottom: 1rem;
-    height: 4rem;
-    line-height: 4rem;
-    vertical-align: middle;
-    background-color: @firstColor;
+  .skill {
+    display: inline-block;
+    background-color: @thirdColor;
+    position: absolute;
+    left: 0;
+    text-align: left;
+    padding-left: 1rem;
+    box-sizing: border-box;
+  }
+
+  .procent {
+    position: absolute;
+    text-align: left;
+    color: #4f4b58;
+    padding-right: 10px;
   }
 }
 
-.about__skills--html5 {
-  width: 90%;
-
-  div {
-    width: 10%;
-  }
+.about__skills--html5 .skill {
+  width: 95%;
 }
 
-.about__skills--css3 {
-  width: 90%;
-
-  div {
-    width: 10%;
-  }
+.about__skills--html5 .procent {
+  right: 5%;
 }
 
-.about__skills--js {
+.about__skills--css3 .skill {
+  width: 95%;
+}
+
+.about__skills--css3 .procent {
+  right: 5%;
+}
+
+.about__skills--js .skill {
   width: 60%;
-
-  div {
-    width: 40%;
-  }
 }
 
-.about__skills--php {
-  width: 40%;
+.about__skills--js .procent {
+  right: 40%;
+}
 
-  div {
-    width: 60%;
-  }
+.about__skills--php .skill {
+  width: 40%;
+}
+
+.about__skills--php .procent {
+  right: 60%;
 }
