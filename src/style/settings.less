@@ -7,6 +7,32 @@ html {
   font-size: 10px;
 }
 
+.section-title {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  text-transform: uppercase;
+  position: relative;
+
+  &::after {
+    content: "";
+    height: 2px;
+    width: 40px;
+    background-color: #d0c6db;
+    position: absolute;
+    transform: translate(-150%, 1500%);
+  }
+}
+
+.section-title + p {
+  width: 100%;
+  color: #d0c6db;
+}
+
+.wrapper {
+  width: 1170px;
+  margin: 0 auto;
+}
 /* General settings */
 
 /* Variables */
