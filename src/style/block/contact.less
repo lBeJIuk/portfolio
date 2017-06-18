@@ -1,0 +1,94 @@
+.contact {
+  font-size: 1.5rem;
+  padding-top: 8rem;
+  color: #5b6074;
+  background-color: #fff;
+  text-align: center;
+}
+
+.contact__title::after {
+  transform: translate(-200%, 1500%);
+}
+
+.contact__title + p {
+  color: #a5aab3;
+}
+
+.contact-email,
+.contact-phone {
+  color: #a5aab3;
+  text-decoration: none;
+  line-height: 60px;
+  vertical-align: middle;
+}
+
+.contact-email::before,
+.contact-phone::before {
+  content: "";
+  width: 60px;
+  height: 60px;
+  background-size: 70%;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  display: inline-block;
+  transform: translateY(25px);
+}
+
+.contact-email::before {
+  background-image: svg-load('../img/emal.svg', fill = #ffd670);
+}
+
+.contact-phone::before {
+  background-image: svg-load('../img/phone-call.svg', fill = #ffd670);
+}
+
+.contact__form {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.contact__form-name,
+.contact__form-email,
+.contact__form-textarea {
+  background-color: #f3f3f3;
+  border: none;
+  outline: none;
+  box-shadow: none;
+  padding: 20px;
+  box-sizing: border-box;
+  margin-top: 45px;
+  font-family: 'Roboto Slab', serif;
+  text-overflow: ellipsis;
+}
+
+.contact__form-name::placeholder::before,
+.contact__form-email::placeholder,
+.contact__form-textarea::placeholder {
+  color: #cacaca;
+  content: "123";
+  display: inline-block;
+}
+
+.contact__form-name {
+  flex-grow: 1;
+  margin-right: 25px;
+}
+
+.contact__form-email {
+  flex-grow: 1;
+  margin-left: 25px;
+}
+
+.contact__form-textarea {
+  resize: none;
+  width: 100%;
+  height: 200px;
+}
+
+.btn--contact {
+  margin: 0 auto;
+  margin-top: 60px;
+  margin-bottom: 60px;
+}
