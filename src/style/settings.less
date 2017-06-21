@@ -7,6 +7,14 @@ html {
   font-size: 10px;
 }
 
+.wrapper {
+  min-width: 970px;
+  max-width: 1170px;
+  margin: 0 auto;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
 .section-title {
   width: 100%;
   margin: 0;
@@ -27,11 +35,6 @@ html {
 .section-title + p {
   width: 100%;
   color: #d0c6db;
-}
-
-.wrapper {
-  width: 1170px;
-  margin: 0 auto;
 }
 
 .btn {
@@ -63,4 +66,6 @@ html {
 @secondColor: #524664;
 @thirdColor : #ffd670;
 
+@tablet-widths:~"(min-width : 768px) AND (max-width : 1170px)";
+@mobile-widths: ~"(max-width: 767px)";
 /* Variables */
