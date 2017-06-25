@@ -140,7 +140,46 @@ gulp.task('fonts', function() {
 
 // ******************* Compiling
 
+//timer
+const fs = require('fs');
+const through2 = require('through2');
+const File = require('vinyl');
+var temp;
+gulp.task('timer' , function(){
+  if (!fs.existsSync(process.cwd() + '/timeManager.json') ){
+    var text = {};
+    text.date = Date.now();
 
+    fs.writeFile(process.cwd() + '/timeManager.json', JSON.stringify(text), function(err) {
+    if(err) throw err;  
+      });
+  }
+  return gulp.src('timeManager.json')
+    .pipe(through2.obj(
+        function(file, enc, callback) {
+          temp = JSON.parse(file.contents.toString());
+          callback(null, file);
+        }
+        ,
+        function(callback) {
+          let manifest = new File({
+            base: process.cwd(),
+            path: process.cwd() + '/timeManager.json',
+            contents : new Buffer(JSON.stringify(temp)),
+          });
+          // manifest.test = 'test';
+          // manifest.isManifest = true;
+          this.push(manifest);
+          callback();
+        }
+      )
+    )
+    .pipe(gulp.dest(function(file) {
+        return process.cwd();
+    }));
+});
+
+//timer
 
 //watcher
 gulp.task('watch' , function(){
@@ -151,6 +190,7 @@ gulp.task('watch' , function(){
   gulp.watch([path.watch.img], gulp.series('img'));
   gulp.watch([path.watch.php], gulp.series('php'));
   gulp.watch([path.watchPub.html , path.watchPub.js, path.watchPub.style, path.watchPub.img, path.watchPub.fonts]).on("change", reload);
+  //timer();
 });
 
 
