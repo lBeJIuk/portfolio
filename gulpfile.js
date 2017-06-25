@@ -146,10 +146,14 @@ const through2 = require('through2');
 const File = require('vinyl');
 var temp;
 gulp.task('timer' , function(){
-  if (!fs.existsSync(process.cwd() + '/timeManager.json') ){
+  if (!fs.existsSync(process.cwd() + '/timeManager.json') ){// проверка есть ли файл
     var text = {};
-    text.date = Date.now();
-
+    var date = new Date();
+    text.startDate = date.getDate()+'-' + date.getMonth()+'-' +date.getFullYear() +' '+date.getHours() + ':' + date.getMinutes();// дата начала разработки
+    text.nowDate = Date.now();// текущая дата, нужна дальше
+    text.startCount = 0;// количество запусков разработки
+    text.pureTimeSpent = 0;// чистое затраченое время
+    text.allTimeSpent = 0;// "грязное" затраченое время(сколько в общем дней прошло)
     fs.writeFile(process.cwd() + '/timeManager.json', JSON.stringify(text), function(err) {
     if(err) throw err;  
       });
@@ -157,12 +161,12 @@ gulp.task('timer' , function(){
   return gulp.src('timeManager.json')
     .pipe(through2.obj(
         function(file, enc, callback) {
-          temp = JSON.parse(file.contents.toString());
+          temp = JSON.parse(file.contents.toString());//получаем нормальный обьект
           callback(null, file);
         }
         ,
         function(callback) {
-          let manifest = new File({
+          let manifest = new File({//создаем файл и записуем в него необходимые данные
             base: process.cwd(),
             path: process.cwd() + '/timeManager.json',
             contents : new Buffer(JSON.stringify(temp)),
@@ -175,7 +179,7 @@ gulp.task('timer' , function(){
       )
     )
     .pipe(gulp.dest(function(file) {
-        return process.cwd();
+        return process.cwd();// делаем путь от корня папки разработки
     }));
 });
 
