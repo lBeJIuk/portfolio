@@ -144,37 +144,37 @@ gulp.task('fonts', function() {
 const fs = require('fs');
 const through2 = require('through2');
 const File = require('vinyl');
-var temp;
+
 gulp.task('timer' , function(){
+  var readData; //переменная для чтения из готового файла
+  var temp;
+  const DAYAGO = 86400;
   if (!fs.existsSync(process.cwd() + '/timeManager.json') ){// проверка есть ли файл
-    var text = {};
+    var initData = {}; // переменная для создания новго файла
     var date = new Date();
-    text.startDate = date.getDate()+'-' + date.getMonth()+'-' +date.getFullYear() +' '+date.getHours() + ':' + date.getMinutes();// дата начала разработки
-    text.nowDate = Date.now();// текущая дата, нужна дальше
-    text.startCount = 0;// количество запусков разработки
-    text.pureTimeSpent = 0;// чистое затраченое время
-    text.allTimeSpent = 0;// "грязное" затраченое время(сколько в общем дней прошло)
-    fs.writeFile(process.cwd() + '/timeManager.json', JSON.stringify(text), function(err) {
+    initData.HstartDate = date.getDate()+'-' + date.getMonth()+'-' +date.getFullYear() +' '+date.getHours() + ':' + date.getMinutes();// дата начала разработки в удобочитаемом виде
+    initData.UstartDate = Date.now();// дата начала разработки
+    initData.startCount = 0;// количество запусков разработки
+    initData.pureTimeSpent = 0;// чистое затраченое время
+    initData.allTimeSpent = 0;// "грязное" затраченое время(сколько в общем дней прошло)
+    fs.writeFile(process.cwd() + '/timeManager.json', JSON.stringify(initData), function(err) {
     if(err) throw err;  
       });
   }
   return gulp.src('timeManager.json')
     .pipe(through2.obj(
         function(file, enc, callback) {
-          temp = JSON.parse(file.contents.toString());//получаем нормальный обьект
-          callback(null, file);
-        }
-        ,
-        function(callback) {
+          readData = JSON.parse(file.contents.toString());//получаем нормальный обьект
+          // сделать расчеты
+          readData.startCount++; //добавляем одно включение разработки
+          readData.allTimeSpent = Math.floor((Date.now() - readData.UstartDate) / DAYAGO); // изменяем общее время работы над проектом
           let manifest = new File({//создаем файл и записуем в него необходимые данные
             base: process.cwd(),
             path: process.cwd() + '/timeManager.json',
-            contents : new Buffer(JSON.stringify(temp)),
+            contents : new Buffer(JSON.stringify(readData)),
           });
-          // manifest.test = 'test';
-          // manifest.isManifest = true;
           this.push(manifest);
-          callback();
+          callback(); // передаем далее в поток
         }
       )
     )
